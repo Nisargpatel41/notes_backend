@@ -6,17 +6,15 @@ const cors = require("cors");
 const notes = require("./routes/notes");
 // const MONGODB_URI = process.env.MONGO_DB_STRING;
 
-// const MONGODB_URI = config.get("dbstring");
-const MONGODB_URI =
-  "mongodb+srv://Nisarg:nis41@cluster0.xpgcm.mongodb.net/notes?retryWrites=true&w=majority";
+const MONGODB_URI = config.get("dbstring");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// if (!config.get("dbstring")) {
-//   console.log("not defined");
-// }
+if (!config.get("dbstring")) {
+  console.log("db string not defined");
+}
 
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
