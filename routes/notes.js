@@ -27,31 +27,31 @@ router.post("/addNote", async (req, res) => {
   let result;
   try {
     result = await note.save();
-    res
-      .status(200)
-      .send({
-        status: 200,
-        result: result,
-        message: "Note added successfully",
-      });
+    res.status(200).send({
+      status: 200,
+      result: result,
+      message: "Note added successfully",
+    });
   } catch (err) {
-    res.status(500).send({ status: 500, result: null, message: err });
+    res
+      .status(500)
+      .send({ status: 500, result: null, message: err.toString() });
   }
 });
 
 router.put("/updateNote", (req, res) => {
   Notes.findOneAndUpdate({ _id: req.body.noteId }, { ...req.body })
     .then((result) => {
-      res
-        .status(200)
-        .send({
-          status: 200,
-          result: result,
-          message: "Note updated successfully",
-        });
+      res.status(200).send({
+        status: 200,
+        result: result,
+        message: "Note updated successfully",
+      });
     })
     .catch((err) => {
-      res.status(500).send({ status: 500, result: null, message: err });
+      res
+        .status(500)
+        .send({ status: 500, result: null, message: err.toString() });
     });
 });
 
@@ -61,32 +61,32 @@ router.put("/archiveNote", (req, res) => {
     { isDeleted: true, modifiedAt: req.body.modifiedAt }
   )
     .then((result) => {
-      res
-        .status(200)
-        .send({
-          status: 200,
-          result: result,
-          message: "Note archived successfully",
-        });
+      res.status(200).send({
+        status: 200,
+        result: result,
+        message: "Note archived successfully",
+      });
     })
     .catch((err) => {
-      res.status(500).send({ status: 500, result: null, message: err });
+      res
+        .status(500)
+        .send({ status: 500, result: null, message: err.toString() });
     });
 });
 
 router.put("/deleteNote", (req, res) => {
   Notes.findOneAndDelete({ _id: req.body.noteId })
     .then((result) => {
-      res
-        .status(200)
-        .send({
-          status: 200,
-          result: result,
-          message: "Note deleted successfully",
-        });
+      res.status(200).send({
+        status: 200,
+        result: result,
+        message: "Note deleted successfully",
+      });
     })
     .catch((err) => {
-      res.status(500).send({ status: 500, result: null, message: err });
+      res
+        .status(500)
+        .send({ status: 500, result: null, message: err.toString() });
     });
 });
 
